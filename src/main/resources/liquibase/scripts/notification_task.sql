@@ -3,7 +3,7 @@
 -- changeset author:1
 CREATE TABLE IF NOT EXISTS notification_task (
                                                  id BIGSERIAL PRIMARY KEY,
-                                                 chat_id VARCHAR(255) NOT NULL,
+                                                 chat_id BIGINT  NOT NULL,
     message TEXT NOT NULL,
     send_time TIMESTAMP NOT NULL,
     status VARCHAR(50) DEFAULT 'PENDING',
