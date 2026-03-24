@@ -3,6 +3,7 @@ package pro.sky.telegrambot.listener;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.SendMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,19 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         AtomicReference<String> currency = new AtomicReference<>("");
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
-            currency.set(update.message().text());
-            System.out.println("Current currency: " + currency);
-        });
-        System.out.println("Current currency: " + currency.get());
+            if(update.message() != null && update.message().text() != null) {
+                long chatId = update.message().chat().id();
+                String text = update.message().text();
+
+                if(text.equals("/start")) {
+                    SendMessage message = new SendMessage(chatId, "Привет");
+                    telegramBot.execute(message);
+                }
+
+            }
+        })
+
+        ;
 
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
