@@ -46,6 +46,12 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.44</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
